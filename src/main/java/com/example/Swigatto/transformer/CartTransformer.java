@@ -9,7 +9,7 @@ public class CartTransformer {
     public static CartResponse CartToCartResponse(Cart cart)
     {
         return  CartResponse.builder()
-                .cartTotal(0)
+                .cartTotal(cart.getCartTotal())
                 .foodItems(new ArrayList<>())
                 .build();
 

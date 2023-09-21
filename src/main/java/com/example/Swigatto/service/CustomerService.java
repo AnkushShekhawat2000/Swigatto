@@ -2,6 +2,7 @@ package com.example.Swigatto.service;
 
 import com.example.Swigatto.dto.request.CustomerRequest;
 import com.example.Swigatto.dto.response.CustomerResponse;
+import com.example.Swigatto.exception.CustomerNotFoundException;
 import com.example.Swigatto.model.Cart;
 import com.example.Swigatto.model.Customer;
 import com.example.Swigatto.repository.CustomerRepository;
@@ -24,6 +25,7 @@ public class CustomerService {
 
         Cart cart = Cart.builder()
                 .cartTotal(0)
+                .customer(customer)
                 .build();
 
         customer.setCart(cart);
@@ -38,6 +40,19 @@ public class CustomerService {
 
         return CustomerTransformer.CustomerToCustomerResponse(savedCustomer);
 
+
+    }
+
+    public CustomerResponse findCustomerByMobile(String mobile) {
+
+
+            Customer customer = customerRepository.findByMobileNo(mobile);
+            if(customer == null)
+            {
+               throw new CustomerNotFoundException("Invalid mobile no!!!");
+            }
+
+            return CustomerTransformer.CustomerToCustomerResponse(customer);
 
     }
 }

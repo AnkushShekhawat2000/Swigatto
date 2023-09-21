@@ -24,7 +24,7 @@ public class Customer {
     int id;
 
     @Size(min = 2, message = "{validation.name.size.too_short}")
-    @Size(max = 40, message = "{validation.name.size.too_long")
+    @Size(max = 40, message = "{validation.name.size.too_long}")
     String name;
 
 
