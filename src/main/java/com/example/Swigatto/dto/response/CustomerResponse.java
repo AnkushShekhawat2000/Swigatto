@@ -1,6 +1,7 @@
 package com.example.Swigatto.dto.response;
 
 
+import com.example.Swigatto.model.Cart;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,6 +16,9 @@ public class CustomerResponse {
     String mobileNo;
 
     String address;
+
+
+    CartResponse cart;
 
 
 
