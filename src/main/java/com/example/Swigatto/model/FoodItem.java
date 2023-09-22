@@ -22,8 +22,9 @@ public class FoodItem {
 
     double price;
 
+
     @Enumerated(EnumType.STRING)
-    FoodCategory foodCategory;
+    FoodCategory category;
 
     boolean veg;
 
