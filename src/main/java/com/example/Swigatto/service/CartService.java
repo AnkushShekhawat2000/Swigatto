@@ -53,7 +53,7 @@ public class CartService {
 
         MenuItem menuItem = menuItemOptional.get();
 
-        if(menuItem.getRestaurant().isOpened() || !menuItem.isAvailable())
+        if(!menuItem.getRestaurant().isOpened() || !menuItem.isAvailable())
         {
            throw new MenuItemNotFound("Given dish is out of stock for now!!!");
         }
