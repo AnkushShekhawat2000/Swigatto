@@ -4,6 +4,7 @@ public enum FoodCategory {
 
     Starters,
     MAIN_COURSE,
+    CHINESE,
     ITALIAN,
     DRINK,
     DESSERT,

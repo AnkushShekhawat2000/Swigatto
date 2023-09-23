@@ -1,6 +1,5 @@
 package com.example.Swigatto.model;
 
-import com.example.Swigatto.Enum.FoodCategory;
 import com.example.Swigatto.Enum.RestaurantCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -37,7 +36,7 @@ public class Restaurant {
 
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    List<FoodItem> availableFoodItems = new ArrayList<>();
+    List<MenuItem> availableMenuItems = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     List<OrderEntity> orders = new ArrayList<>();

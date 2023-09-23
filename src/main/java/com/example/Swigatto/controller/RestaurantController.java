@@ -1,11 +1,10 @@
 package com.example.Swigatto.controller;
 
 
-import com.example.Swigatto.dto.request.FoodRequest;
+import com.example.Swigatto.dto.request.MenuRequest;
 import com.example.Swigatto.dto.request.RestaurantRequest;
 import com.example.Swigatto.dto.response.RestaurantResponse;
 import com.example.Swigatto.service.RestaurantService;
-import com.example.Swigatto.utils.ValidateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,10 +48,10 @@ public class RestaurantController {
          return new ResponseEntity(message, HttpStatus.ACCEPTED);
      }
 
-     @PostMapping("/add/food")
-     public ResponseEntity addFoodToRestaurant(@RequestBody FoodRequest foodRequest)
+     @PostMapping("/add/menu")
+     public ResponseEntity addMenuItemToRestaurant(@RequestBody MenuRequest menuRequest)
      {
-         RestaurantResponse restaurantResponse = restaurantService.addFoodToRestaurant(foodRequest);
+         RestaurantResponse restaurantResponse = restaurantService.addMenuItemToRestaurant(menuRequest);
          return new ResponseEntity(restaurantResponse,HttpStatus.CREATED);
      }
 

@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/food")
-public class FoodCotroller {
-
+public class MenuItemCotroller {
 
     //get all foods of a particulr ctegory
 

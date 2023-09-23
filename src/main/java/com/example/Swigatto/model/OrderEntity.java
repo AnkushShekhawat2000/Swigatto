@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.engine.internal.Cascade;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,12 +37,13 @@ public class OrderEntity {
     @JoinColumn
     DeliveryPartner deliveryPartner;
 
-   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    List<FoodItem> foodItems  = new ArrayList<>();
-
    @ManyToOne
    @JoinColumn
    Restaurant restaurant;
+
+
+   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    List<FoodItem> foodItems = new ArrayList<>();
 
 
 
