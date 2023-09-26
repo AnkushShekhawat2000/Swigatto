@@ -72,11 +72,13 @@ public class CartService {
         Cart cart = customer.getCart();
         FoodItem savedFoodItem = foodItemRepository.save(foodItem);
 
-        double cartTotal = 0;
+        int cartTotal = 0;
+        cart.getFoodItems().add(savedFoodItem);
         for(FoodItem food: cart.getFoodItems()){
             cartTotal += food.getRequiredQuantity()*food.getMenuItem().getPrice();
         }
-        cart.getFoodItems().add(savedFoodItem);
+
+        savedFoodItem.setCart(cart);
         cart.setCartTotal(cartTotal);
         menuItem.getFoodItems().add(savedFoodItem);
 
