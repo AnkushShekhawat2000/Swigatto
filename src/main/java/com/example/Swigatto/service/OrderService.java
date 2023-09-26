@@ -24,15 +24,17 @@ public class OrderService {
     final OrderEntityRespository orderEntityRespository;
 
     final RestaurantRepository restaurantRepository;
+
     @Autowired
-    public OrderService(CustomerRepository customerRepository, DeliveryPartnerRepository deliveryPartnerRepository, OrderEntityRespository orderEntityRespository, OrderEntityRespository restaurantRespository, OrderEntityRespository restaurantRepository, RestaurantRepository restaurantRepository1) {
+    public OrderService(CustomerRepository customerRepository, DeliveryPartnerRepository deliveryPartnerRepository, OrderEntityRespository orderEntityRespository, RestaurantRepository restaurantRepository) {
         this.customerRepository = customerRepository;
         this.deliveryPartnerRepository = deliveryPartnerRepository;
         this.orderEntityRespository = orderEntityRespository;
-
-
-        this.restaurantRepository = restaurantRepository1;
+        this.restaurantRepository = restaurantRepository;
     }
+
+
+
 
     public OrderResponse placeOrder(String customerMobile) {
 
@@ -58,35 +60,29 @@ public class OrderService {
         // prepare the order entity
         OrderEntity order = OrderTransformer.prepareOrderEntity(cart);
 
-        OrderEntity saveOrder = orderEntityRespository.save(order);
+        OrderEntity savedOrder = orderEntityRespository.save(order);
 
         order.setCustomer(customer);
         order.setDeliveryPartner(partner);
         order.setRestaurant(restaurant);
         order.setFoodItems(cart.getFoodItems());
 
-        customer.getOrders().add(saveOrder);
-        partner.getOrders().add(saveOrder);
-        restaurant.getOrders().add(saveOrder);
+        customer.getOrders().add(savedOrder);
+        partner.getOrders().add(savedOrder);
+        restaurant.getOrders().add(savedOrder);
 
-        for(FoodItem foodItem : cart.getFoodItems())
-        {
-           foodItem.setCart(null);
-           foodItem.setOrder(saveOrder);
+        for(FoodItem foodItem: cart.getFoodItems()){
+            foodItem.setCart(null);
+            foodItem.setOrder(savedOrder);
         }
-
         clearCart(cart);
-
 
         customerRepository.save(customer);
         deliveryPartnerRepository.save(partner);
         restaurantRepository.save(restaurant);
 
-
-        // prepare order response
-
-    return OrderTransformer.OrderToOrderResponse(saveOrder);
-
+        // prepare orderresponse
+        return OrderTransformer.OrderToOrderResponse(savedOrder);
 
 
 
